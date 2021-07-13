@@ -1,5 +1,5 @@
-import React, { memo, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import React, { memo, useContext } from 'react';
 import ReactMarkdown from 'react-markdown';
 import PageContext from '../../../contexts/PageContext';
 import { formatDateRange, isItemVisible, safetyCheck } from '../../../utils';
@@ -17,12 +17,12 @@ const ProjectItem = ({ item, language }) => {
             </a>
           )}
         </div>
-        {item.date && (
+        {item.startDate && (
           <h6 className="text-xs font-medium text-right">
             (
             {formatDateRange(
               {
-                startDate: item.date,
+                startDate: item.startDate,
                 endDate: item.endDate,
                 language,
               },
@@ -33,10 +33,9 @@ const ProjectItem = ({ item, language }) => {
         )}
       </div>
       {item.summary && (
-        <ReactMarkdown
-          className="markdown mt-2 text-sm"
-          source={item.summary}
-        />
+        <ReactMarkdown className="markdown mt-2 text-sm">
+          {item.summary}
+        </ReactMarkdown>
       )}
     </div>
   );

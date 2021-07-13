@@ -1,11 +1,11 @@
-import { Formik } from 'formik';
-import React, { memo } from 'react';
 import * as Yup from 'yup';
+import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import Input from '../../components/shared/Input';
-import ModalEvents from '../../constants/ModalEvents';
+import React, { memo } from 'react';
 import { getFieldProps } from '../../utils';
 import DataModal from '../DataModal';
+import Input from '../../components/shared/Input';
+import ModalEvents from '../../constants/ModalEvents';
 
 const initialValues = {
   company: '',
@@ -71,14 +71,14 @@ const WorkModal = () => {
             <Input
               type="date"
               label={t('shared.forms.startDate')}
-              placeholder="6th August 208"
+              placeholder="6th August 2018"
               {...getFieldProps(formik, schema, 'startDate')}
             />
 
             <Input
               type="date"
               label={t('shared.forms.endDate')}
-              placeholder="6th August 208"
+              placeholder="6th August 2018"
               {...getFieldProps(formik, schema, 'endDate')}
             />
 

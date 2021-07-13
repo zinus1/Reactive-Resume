@@ -18,6 +18,7 @@
       "email": "E-Mail Adresse",
       "summary": "Zusammenfassung",
       "markdown": "Dieser Textblock unterstützt <1>Markdown</1>.",
+      "contact": "Kontakt",
       "validation": {
         "min": "Bitte geben Sie mindestens {{number}} Zeichen ein.",
         "dateRange": "Das Enddatum kann nicht vor dem Startdatum liegen.",

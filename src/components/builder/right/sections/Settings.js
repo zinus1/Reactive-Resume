@@ -1,15 +1,16 @@
-import React, { memo, useContext, useState } from 'react';
 import { FaAngleDown } from 'react-icons/fa';
-import { useTranslation, Trans } from 'react-i18next';
-import UserContext from '../../../../contexts/UserContext';
-import Button from '../../../shared/Button';
-import Heading from '../../../shared/Heading';
-import styles from './Settings.module.css';
-import Input from '../../../shared/Input';
-import SettingsContext from '../../../../contexts/SettingsContext';
-import themeConfig from '../../../../data/themeConfig';
+import { Trans, useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import React, { memo, useContext, useState } from 'react';
+import * as styles from './Settings.module.css';
 import { languages } from '../../../../i18n';
 import { useDispatch } from '../../../../contexts/ResumeContext';
+import Button from '../../../shared/Button';
+import Heading from '../../../shared/Heading';
+import Input from '../../../shared/Input';
+import SettingsContext from '../../../../contexts/SettingsContext';
+import UserContext from '../../../../contexts/UserContext';
+import themeConfig from '../../../../data/themeConfig';
 
 const Settings = ({ id }) => {
   const { t } = useTranslation();
@@ -17,12 +18,13 @@ const Settings = ({ id }) => {
   const [deleteText, setDeleteText] = useState(
     t('builder.settings.dangerZone.button'),
   );
+  const [isDeleteAccountInProgress, setDeleteAccountInProgress] =
+    useState(false);
 
   const dispatch = useDispatch();
   const { deleteAccount } = useContext(UserContext);
-  const { theme, setTheme, language, setLanguage } = useContext(
-    SettingsContext,
-  );
+  const { theme, setTheme, language, setLanguage } =
+    useContext(SettingsContext);
 
   const handleChangeTheme = (e) => {
     setTheme(e.target.value);
@@ -34,16 +36,21 @@ const Settings = ({ id }) => {
     dispatch({ type: 'change_language', payload: lang });
   };
 
-  const handleDeleteAccount = () => {
+  const handleDeleteAccount = async () => {
     if (deleteText === t('builder.settings.dangerZone.button')) {
       setDeleteText(t('shared.buttons.confirmation'));
       return;
     }
 
-    setDeleteText('Buh bye! :(');
-    setTimeout(() => {
-      deleteAccount();
-    }, 500);
+    setDeleteAccountInProgress(true);
+
+    try {
+      await deleteAccount();
+    } catch (error) {
+      toast.error('An error occurred deleting your account.');
+      setDeleteAccountInProgress(false);
+      setDeleteText(t('builder.settings.dangerZone.button'));
+    }
   };
 
   return (
@@ -96,7 +103,11 @@ const Settings = ({ id }) => {
         <p className="leading-loose">{t('builder.settings.dangerZone.text')}</p>
 
         <div className="mt-4 flex">
-          <Button isDelete onClick={handleDeleteAccount}>
+          <Button
+            isDelete
+            onClick={handleDeleteAccount}
+            isLoading={isDeleteAccountInProgress}
+          >
             {deleteText}
           </Button>
         </div>

@@ -18,6 +18,7 @@
       "email": "Adres e-mail",
       "summary": "Podsumowanie",
       "markdown": "Ten blok tekstowy obsługuje <1>markdown</1>.",
+      "contact": "Kontakt",
       "validation": {
         "min": "Wprowadź co najmniej {{number}} znaków.",
         "dateRange": "Data końcowa musi być późniejsza niż data początkowa.",

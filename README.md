@@ -56,7 +56,9 @@ For those of you familiar with the Crowdin Platform, you could do that too and j
 - French (Français)
 - German (Deutsche)
 - Greek (Ελληνικά)
+- Hebrew (עִברִית)
 - Hindi (हिंदी)
+- Indonesian (Bahasa Indonesia)
 - Italian (Italiano)
 - Japanese (日本人)
 - Kannada (ಕನ್ನಡ)
@@ -97,6 +99,10 @@ npm install
 ```
 
 3. Create a `.env` file and fill it with your Firebase credentials
+
+You can get these by setting up a firebase web app [here](https://console.firebase.google.com/u/0/).
+
+Also note that you'll need to set up a Realtime Database, *not* a Firestore Database, to get the correct value for `FIREBASE_DATABASEURL`. Be sure to set it to test mode so you can read/write data. Just remember to either revert these or remove the database after your testing is completed.
 
 ```
 FIREBASE_APIKEY=""

@@ -1,5 +1,5 @@
-import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import i18n from 'i18next';
 import resources from './locales';
 
 const languages = [
@@ -48,8 +48,16 @@ const languages = [
     name: 'Greek (Ελληνικά)',
   },
   {
+    code: 'he',
+    name: 'Hebrew (עִברִית)',
+  },
+  {
     code: 'hi',
     name: 'Hindi (हिंदी)',
+  },
+  {
+    code: 'id',
+    name: 'Indonesian (Bahasa Indonesia)',
   },
   {
     code: 'it',
